@@ -6,11 +6,21 @@
 
 export BOWTIE_INDEXES="/songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/contamIndex"
 
-cd /home/apankov/ilf2_julia/rib_pro_ko/fq_files
+cd "${FQ_PATH}"
+
+echo "${FQ_PATH} directory:"
+
+if [ ! -f ../fastq_files.txt ]; then 
+  cat ../mrna.txt ../rib_pro.txt > ../fastq_files.txt
+fi
 
 f1=($(cat ../fastq_files.txt))
 
 SAMPLE="${f1[$PBS_ARRAYID]}"
+
+if [ ! -d noContam ]; then
+  mkdir noContam
+fi
 
 gzip -dc "${SAMPLE}_fx_trimmed.fastq.gz" | /songlab/shared/bowtie2/bowtie-1.0.0/bowtie -l 20 -p 20 --un="./noContam/${SAMPLE}_noContam.fq" contamRNA -  2>> "stats_${SAMPLE}.txt" > "${SAMPLE}_rrnaAlignments.aln"
 
