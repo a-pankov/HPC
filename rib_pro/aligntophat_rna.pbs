@@ -22,6 +22,10 @@ PATH="/songlab/shared/bin:${PATH}"
 
 /songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE} -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean --prefilter-multihits  genome "./noContam/${SAMPLE}_noContam.fq.gz"
 
+if [ ! -d ../tophat/ ]; then
+  mkdir ../tophat/
+fi
+
 mv /scratch/Tophat2_${SAMPLE} ../tophat/
 
 
