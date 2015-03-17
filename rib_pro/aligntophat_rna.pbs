@@ -1,7 +1,7 @@
 #!/bin/zsh
 #PBS -l nodes=1:ppn=8
 #PBS -l pmem=1700mb
-#PBS -m ae -M pankov.alex@gmail.com
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
 #PBS -N rib_pro_th
 #PBS -t 1-4
 
@@ -20,8 +20,8 @@ export BOWTIE_INDEXES="/songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/Bowtie
 export BOWTIE2_INDEXES="/songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/Bowtie2Index/"
 PATH="/songlab/shared/bin:${PATH}"
 
-/songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE}_12_30_14 -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean --prefilter-multihits  genome "./noContam/${SAMPLE}_noContam.fq.gz"
+/songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE} -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean --prefilter-multihits  genome "./noContam/${SAMPLE}_noContam.fq.gz"
 
-mv /scratch/Tophat2_${SAMPLE}_12_30_14 ../tophat/
+mv /scratch/Tophat2_${SAMPLE} ../tophat/
 
 
