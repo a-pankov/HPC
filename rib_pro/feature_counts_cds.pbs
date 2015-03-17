@@ -1,11 +1,12 @@
 #!/bin/zsh
 #PBS -l nodes=1:ppn=4
 #PBS -l pmem=2gb
-#PBS -m ae -M pankov.alex@gmail.com
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
 #PBS -N fc_rib_pro_cds
 
-cd /home/apankov/rib_pro_pilot_jake/Project_Blelloch/rna_all/tophat/
+cd "${TH_PATH}"
 
+echo "${TH_PATH} directory:"
 f1=($(cat ../fastq_files.txt | sed 's/$/_good.bam/g'))
 
 ~/bin/featureCounts -O -T 4 -t CDS -a /songlab/shared/mm9/gencode.vM1.annotation_cuffclean_verified_CDS.gtf -o fc_counts_cds.txt $f1
