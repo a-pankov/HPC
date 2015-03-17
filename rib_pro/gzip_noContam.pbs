@@ -4,7 +4,9 @@
 #PBS -N gz_noContam
 #PBS -t 1-4
 
-cd /home/apankov/ilf2_julia/rib_pro_ko/fq_files
+cd "${FQ_PATH}"
+
+echo "${FQ_PATH} directory:"
 
 f1=($(cat ../fastq_files.txt))
 
