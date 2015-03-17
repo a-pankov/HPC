@@ -1,0 +1,18 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -l pmem=1gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N cov_ribPro
+#PBS -t 1-4
+
+cd /home/apankov/ilf2_julia/rib_pro_ko/tophat
+
+f1=($(cat ../fastq_files.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+/home/apankov/bin/bedtools genomecov -bga -split -ibam "./${SAMPLE}_good.bam" -g /songlab/shared/mm9/gencode.vM1.annotation_cuffclean.gtf > "./${SAMPLE}_cov.txt"
+
+
+
+

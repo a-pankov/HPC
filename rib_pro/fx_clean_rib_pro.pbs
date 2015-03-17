@@ -1,0 +1,17 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N ilf2_rib_pro_fx_clean
+#PBS -t 1-2
+
+cd /home/apankov/ilf2_julia/rib_pro_ko/fq_files/
+
+f1=($(cat ../rib_pro.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+export PATH="/songlab/shared/bin/fastx_toolkit-0.0.14/bin/bin/:${PATH}"
+
+{ zcat "${SAMPLE}.fastq.gz" | fastx_clipper -a AGATCGGAAGAGCACACGTCT -l 10 -c -n -v -Q33 | fastx_trimmer -Q33 -f 1 | gzip > "${SAMPLE}_fx_trimmed.fastq.gz"; } 2> "${SAMPLE}.log" 
+
+

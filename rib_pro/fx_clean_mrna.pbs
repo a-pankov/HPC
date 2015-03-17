@@ -1,0 +1,19 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N ilf2_rib_pro_fx_rna_clean
+#PBS -t 1-2
+
+cd "${FQ_PATH}"
+
+echo "${FQ_PATH} directory:"
+
+f1=($(cat ../mrna.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+export PATH="/songlab/shared/bin/fastx_toolkit-0.0.14/bin/bin/:${PATH}"
+
+{ zcat "${SAMPLE}.fastq.gz" | fastx_clipper -a AGATCGGAAGAGCACACGTCT -l 10 -n -v -Q33 | fastx_trimmer -Q33 -f 1 | gzip > "${SAMPLE}_fx_trimmed.fastq.gz"; } 2> "${SAMPLE}.log" 
+
+

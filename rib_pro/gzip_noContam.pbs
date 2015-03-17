@@ -1,0 +1,16 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N gz_noContam
+#PBS -t 1-4
+
+cd /home/apankov/ilf2_julia/rib_pro_ko/fq_files
+
+f1=($(cat ../fastq_files.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+gzip ./noContam/${SAMPLE}_noContam.fq
+
+
+

@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N th_qc_rib_pro
+#PBS -t 1-4
+
+cd /home/apankov/ilf2_julia/rib_pro_ko/tophat/
+f1=($(cat ../fastq_files.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+~/rnaqc/myPrograms/th_qc_se Tophat2_${SAMPLE}_12_30_14/accepted_hits.bam "Tophat2_${SAMPLE}_12_30_14/${SAMPLE}" 2
+
+
+
+
+
+
+

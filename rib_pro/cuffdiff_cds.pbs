@@ -1,0 +1,14 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=1gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N cd_ribpro
+#PBS -t 1-1
+
+cd /home/apankov/rib_pro_pilot_jake/Project_Blelloch/rna_all/tophat/cuffquant_gencode_cds/ 
+
+/songlab/shared/bin/cufflinks-2.2.1.Linux_x86_64/cuffdiff -o cd_out -p 12 -L Rib_Pro,mRNA -b  /songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/WholeGenomeFasta/genome.fa  --no-update-check --max-bundle-frags 50000000  /songlab/shared/mm9/gencode.vM1.annotation_cuffclean_verified_CDS.gtf JF001_index9_GATCAG_L005_R1_001/abundances.cxb,JF001_index12_CTTGTA_L005_R1_001/abundances.cxb JF001_index2_CGATGT_L005_R1_001/abundances.cxb,JF001_index6_GCCAAT_L005_R1_001/abundances.cxb 
+
+
+
+
