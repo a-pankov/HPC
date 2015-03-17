@@ -1,7 +1,7 @@
 #!/bin/zsh
 #PBS -l nodes=1:ppn=1
 #PBS -m ae -M pankov.alex+CCLOGS@gmail.com
-#PBS -N ilf2_rib_pro_fx_clean
+#PBS -N rib_pro_fx_clean
 #PBS -t 1-2
 
 cd "${FQ_PATH}"
