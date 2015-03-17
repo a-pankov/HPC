@@ -4,7 +4,9 @@
 #PBS -N ilf2_rib_pro_fx_clean
 #PBS -t 1-2
 
-cd /home/apankov/ilf2_julia/rib_pro_ko/fq_files/
+cd "${FQ_PATH}"
+
+echo "${FQ_PATH} directory:"
 
 f1=($(cat ../rib_pro.txt))
 
