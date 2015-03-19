@@ -1,0 +1,18 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=10
+#PBS -l pmem=1gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N parse_gtf
+
+export PATH="/costellolab/shared/bin:${openmpi}/bin:${PATH}:/home/apankov/lib64/py0/bin"
+export R_LIBS="/costellolab/shared/lib/R_libs:${R_LIBS}"
+
+cd "${COV_PATH}"
+
+echo "${COV_PATH} directory:"
+
+/costellolab/shared/bin/Rscript ~/HPC/rib_pro/R/gtf_parse.R ${GTF_PATH} ${GENE_FEAT} 10
+
+
+
+
