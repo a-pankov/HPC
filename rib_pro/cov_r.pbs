@@ -1,0 +1,23 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=20
+#PBS -l pmem=1gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N cov_ribPro
+#PBS -t 1-4
+
+export PATH="/costellolab/shared/bin:${openmpi}/bin:${PATH}:/home/apankov/lib64/py0/bin"
+export R_LIBS="/costellolab/shared/lib/R_libs:${R_LIBS}"
+
+cd "${FEAT_PATH}"
+
+echo "${FEAT_PATH} directory:"
+
+f1=($(cat ../../fastq_files.txt))
+
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+/costellolab/shared/bin/Rscript ~/HPC/rib_pro/R/trans_cov.R "${SAMPLE}" 20
+
+
+
+
