@@ -1,0 +1,13 @@
+#!/bin/zsh
+#PBS -l nodes=n18:ppn=8
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N cuffnorm_old
+
+cd /costellolab/jocostello/rna_all/good_bams/cuffquant_gencode_all/
+
+fs=($("ls"))
+
+LABELS=$(echo ${(j:,:)fs})
+SAMPLES=($("ls" | sed "s/$/\/abundances.cxb/g"))
+
+/songlab/shared/bin/cufflinks-2.2.1.Linux_x86_64/cuffnorm -o cuffnorm -L $LABELS --compatible-hits-norm -p 8 --library-type fr-firststrand --no-update-check /songlab/shared/hg19/hg19_GencodeCompV19_geneid.gtf $SAMPLES

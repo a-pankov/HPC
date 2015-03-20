@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N th_qc_0918
+#PBS -t 1-12
+
+cd /costellolab/jocostello/rna_all/14_09_18/
+
+files=($(cat samples.txt))
+SAMPLE="${files[$PBS_ARRAYID]}"
+
+~/rnaqc/myPrograms/th_qc Tophat2_${SAMPLE}_09_18_14/accepted_hits.bam "Tophat2_${SAMPLE}_09_18_14/${SAMPLE}" 2
+
+
+
+
+

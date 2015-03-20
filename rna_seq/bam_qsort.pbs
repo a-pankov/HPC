@@ -1,0 +1,14 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=4
+#PBS -l pmem=5gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N bam_qsort_1028
+#PBS -t 1-11
+
+cd /costellolab/jocostello/rna_all/14_10_28/
+
+files=($(cat samples.txt))
+SAMPLE="${files[$PBS_ARRAYID]}"
+
+~/bin/samtools sort -@ 4 -m 5G  -n "unmapped/${SAMPLE}.bam" "unmapped/${SAMPLE}_qsort"
+

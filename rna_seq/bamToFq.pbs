@@ -1,0 +1,16 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N bam2Fq_1029
+#PBS -t 1-11
+
+cd /costellolab/jocostello/rna_all/14_10_28/
+
+files=($(cat samples.txt))
+SAMPLE="${files[$PBS_ARRAYID]}"
+
+~/bin/bamToFastq -i "unmapped/${SAMPLE}_qsort.bam" -fq "unmapped/${SAMPLE}_1.fq" -fq2 "unmapped/${SAMPLE}_2.fq"
+rm "unmapped/${SAMPLE}_qsort.bam"
+gzip "unmapped/${SAMPLE}_1.fq"
+gzip "unmapped/${SAMPLE}_2.fq"
+

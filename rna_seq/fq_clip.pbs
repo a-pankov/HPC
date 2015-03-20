@@ -1,0 +1,20 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N fq_clean_1028
+#PBS -t 1-11
+
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/apankov/lib64/gzstream/"
+
+
+cd /costellolab/jocostello/rna_all/14_10_28/unmapped
+
+files=($(cat ../samples.txt))
+SAMPLE="${files[$PBS_ARRAYID]}"
+
+READ1="${SAMPLE}_1.fq.gz"
+READ2="${SAMPLE}_2.fq.gz"
+
+/home/apankov/rnaqc/myPrograms/fq_hash_remove/fq_hash_remove_PE "${READ1}" "${READ2}" "${SAMPLE}_clipped" > "${SAMPLE}_clipped.log"
+
+

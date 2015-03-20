@@ -1,0 +1,24 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=1700mb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N th_1028
+#PBS -t 1-11
+
+cd /costellolab/jocostello/rna_all/14_10_28/unmapped
+
+f1=($(cat ../samples.txt))
+
+SAMPLE=${f1[$PBS_ARRAYID]}
+
+
+export BOWTIE_INDEXES="/songlab/shared/hg19/Homo_sapiens/UCSC/hg19/Sequence/BowtieIndex/"
+export BOWTIE2_INDEXES="/songlab/shared/hg19/Homo_sapiens/UCSC/hg19/Sequence/Bowtie2Index/"
+PATH="/songlab/shared/bin:${PATH}"
+
+
+/songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE}_10_31_14 -p 12 --transcriptome-index=/songlab/shared/hg19/hg19_GencodeCompV19 --library-type fr-firststrand --prefilter-multihits  genome "${SAMPLE}_clipped_1.fq.gz" "${SAMPLE}_clipped_2.fq.gz"
+
+mv /scratch/Tophat2_${SAMPLE}_10_31_14 ../
+
+
