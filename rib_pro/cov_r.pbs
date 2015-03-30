@@ -8,6 +8,8 @@
 export PATH="/costellolab/shared/bin:${openmpi}/bin:${PATH}:/home/apankov/lib64/py0/bin"
 export R_LIBS="/costellolab/shared/lib/R_libs:${R_LIBS}"
 
+echo "hi"
+
 cd "${FEAT_PATH}"
 
 echo "${FEAT_PATH} directory:"
