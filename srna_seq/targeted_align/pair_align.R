@@ -30,7 +30,7 @@ rm(quers, tbl_quers)
 library(parallel)
 ## lscores_align <- mclapply(quers_uniq, function(x) pairwiseAlignment(uniq_refs_dna, x, type = 'global-local', scoreOnly = T), mc.cores = 64)
 
-mat <- nucleotideSubstitutionMatrix(match = 1, mismatch = -Inf, baseOnly = TRUE)
+mat <- nucleotideSubstitutionMatrix(match = 1, mismatch = -Inf, baseOnly = F)
 lscores_align <- mclapply(quers_uniq, function(x) pairwiseAlignment( uniq_refs_dna, x, type = "overlap", scoreOnly= T, substitutionMatrix = mat, gapOpening = -Inf), mc.cores = 64)
 
 
