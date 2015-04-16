@@ -13,7 +13,8 @@ echo "${FQ_PATH} directory:"
 f1=($(cat ../samples.txt))
 SAMPLE="${f1[$PBS_ARRAYID]}"
 
-/costellolab/shared/bin/Rscript ~/HPC/srnaseq/targeted_align/pair_align.R "${SAMPLE}"
+
+/costellolab/shared/bin/Rscript /home/apankov/HPC/srna_seq/targeted_align/pair_align.R "${SAMPLE}"
 
 
 

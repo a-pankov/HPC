@@ -1,6 +1,8 @@
 args <- commandArgs(TRUE)
 samp <- args[1]
 
+cat("Running R\n")
+
 library(ShortRead)
 library(Biostrings)
 
