@@ -20,7 +20,9 @@ export BOWTIE_INDEXES="/songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/Bowtie
 export BOWTIE2_INDEXES="/songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/Bowtie2Index/"
 PATH="/songlab/shared/bin:${PATH}"
 
-/songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE} --bowtie1 --library-type fr-secondstrand -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean --prefilter-multihits  genome "./noContam/${SAMPLE}_noContam.fq.gz"
+## /songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE} --bowtie1 --library-type fr-secondstrand -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean2 --prefilter-multihits  genome "./noContam/${SAMPLE}_noContam.fq.gz"
+
+/songlab/shared/tophat/tophat-2.0.12.Linux_x86_64/tophat2 -o /scratch/Tophat2_${SAMPLE} --bowtie1 --library-type fr-secondstrand -p 8 --transcriptome-index=/songlab/shared/mm9/mm9_Gencode_vM1/gencode.vM1.annotation_cuffclean2 --prefilter-multihits  genome <(gunzip -c "./noContam/${SAMPLE}_noContam.fq.gz")
 
 if [ ! -d ../tophat/ ]; then
   mkdir ../tophat/
