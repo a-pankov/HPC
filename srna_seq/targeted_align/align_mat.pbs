@@ -1,0 +1,20 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=64
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N srna_align
+#PBS -t 1-4
+
+export R_LIBS="/costellolab/shared/lib/R_libs:${R_LIBS}"
+
+cd "${FQ_PATH}"
+
+echo "${FQ_PATH} directory:"
+
+f1=($(cat ../samples.txt))
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+/costellolab/shared/bin/Rscript ~/HPC/srnaseq/targeted_align/pair_align.R "${SAMPLE}"
+
+
+
+
