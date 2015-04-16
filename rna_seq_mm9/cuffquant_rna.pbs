@@ -1,0 +1,22 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=4
+#PBS -l pmem=1gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N cuffquant
+#PBS -t 1-4
+
+
+cd "${TH_PATH}"
+
+echo "${TH_PATH} directory:"
+
+f1=($(cat ../samples.txt))
+
+SAMPLE=${f1[$PBS_ARRAYID]}
+
+#### /songlab/shared/bin/cufflinks-2.2.1.Linux_x86_64/cuffquant -o cuffquant_gencode_by_lane_gencode/${SAMPLE} --max-bundle-frags 50000000 -p 8 -b /songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/WholeGenomeFasta/genome.fa --library-type fr-firststrand --no-update-check /songlab/shared/mm9/gencode.vM1.annotation_cuffclean.gtf  "./Tophat2_${SAMPLE}_10_22_14/${SAMPLE}_good.bam"
+
+
+/songlab/shared/bin/cufflinks-2.2.1.Linux_x86_64/cuffquant -o cuffquant_gencode/${SAMPLE} --max-bundle-frags 50000000 -p 12 -b /songlab/shared/mm9/Mus_musculus/UCSC/mm9/Sequence/WholeGenomeFasta/genome.fa --library-type fr-firststrand --no-update-check /songlab/shared/mm9/gencode.vM1.annotation_cuffclean.gtf "./${SAMPLE}_good.bam"
+
+
