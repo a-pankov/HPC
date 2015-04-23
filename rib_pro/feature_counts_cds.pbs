@@ -9,5 +9,5 @@ cd "${TH_PATH}"
 echo "${TH_PATH} directory:"
 f1=($(cat ../fastq_files.txt | sed 's/$/_good.bam/g'))
 
-~/bin/featureCounts -O -T 4 -t CDS -a /songlab/shared/mm9/gencode.vM1.annotation_cuffclean_CDS.gtf -o fc_counts_cds.txt $f1
+~/bin/featureCounts -s 1 -O -T 4 -t CDS -a /songlab/shared/mm9/gencode.vM1.annotation_cuffclean_CDS.gtf -o fc_counts_cds.txt $f1
 
