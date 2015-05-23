@@ -1,0 +1,14 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=1
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N srna_cutadapt_nn_nn
+#PBS -t 1-4
+
+
+cd /home/apankov/ilf2_julia/srnaseq/fq_files
+
+f1=($(cat ../samples.txt))
+SAMPLE="${f1[$PBS_ARRAYID]}"
+
+~/bin/python /costellolab/shared/software/cutadapt-1.7.1/bin/cutadapt -u 2 -u -2 -m 10  -o "${SAMPLE}_noAdap_noArchAdap3_5_nn_nn.fastq.gz" "${SAMPLE}_noAdap_noArchAdap3_5.fastq.gz"
+
