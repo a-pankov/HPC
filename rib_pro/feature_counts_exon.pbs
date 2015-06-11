@@ -1,0 +1,13 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=4
+#PBS -l pmem=2gb
+#PBS -m ae -M pankov.alex+CCLOGS@gmail.com
+#PBS -N fc_rib_pro_exon
+
+cd "${TH_PATH}"
+
+echo "${TH_PATH} directory:"
+f1=($(cat ../fastq_files.txt | sed 's/$/_good.bam/g'))
+
+~/bin/featureCounts -s 1 -O -T 4 -g 'exon' -a /songlab/shared/mm9/gencode.vM1.annotation_cuffclean.gtf -o fc_counts_exon.txt $f1
+
