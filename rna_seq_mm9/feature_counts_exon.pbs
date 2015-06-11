@@ -1,0 +1,14 @@
+#!/bin/zsh
+#PBS -l nodes=1:ppn=24
+#PBS -l pmem=2gb
+#PBS -m ae -M pankov.alex@gmail.com
+#PBS -N fc
+
+cd "${TH_PATH}"
+
+echo "${TH_PATH} directory:"
+
+f1=($(cat ../samples.txt | sed 's/$/.bam/g'))
+
+~/bin/featureCounts -s 2 -B -p -O -T 24 -g 'exon' -a /songlab/shared/mm9/gencode.vM1.annotation_cuffclean.gtf -o fc_counts.txt $f1
+
